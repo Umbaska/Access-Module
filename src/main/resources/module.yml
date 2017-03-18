@@ -1,0 +1,6 @@
+name: Access
+main: uk.co.umbaska.module.access.AccessModule
+base-package: uk.co.umbaska.module.access
+version: 1
+min-umbaska-build: 4
+min-major-java-version: 7
