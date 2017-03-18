@@ -71,10 +71,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.19.1</version>
             </plugin>
-            <!--plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>1.5</version>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -83,7 +83,19 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin-->
+                <configuration>
+                    <minimizeJar>true</minimizeJar>
+                    <artifactSet>
+                        <includes>
+                            <include>com.zaxxer:HikariCP</include>
+                            <include>org.slf4j:slf4j-api</include>
+                            <include>org.slf4j:slf4j-log4j12</include>
+                            <include>log4j:log4j</include>
+                            <include>org.mariadb.jdbc:mariadb-java-client</include>
+                        </includes>
+                    </artifactSet>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -99,7 +111,7 @@
         <dependency>
             <groupId>uk.co.umbaska</groupId>
             <artifactId>Umbaska</artifactId>
-            <version>4</version>
+            <version>4.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -116,5 +128,21 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>1.5.9</version>
+        </dependency>
+
     </dependencies>
 </project>
