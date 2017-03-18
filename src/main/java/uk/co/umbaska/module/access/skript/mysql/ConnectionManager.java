@@ -2,6 +2,7 @@ package uk.co.umbaska.module.access.skript.mysql;
 
 import uk.co.umbaska.module.access.skript.mysql.types.model.AccessConnection;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,13 @@ public class ConnectionManager {
 
     public void removeConnection(String key){
         if (keyIsUsed(key)){
+            if (connections.get(key).isConnected()){
+                try {
+                    connections.get(key).close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             connections.remove(key);
         }
     }
