@@ -4,7 +4,7 @@ package uk.co.umbaska.module.access.skript.mysql.types.model;
  * @author Andrew Tran
  */
 public enum AccessConnectionType {
-    MYSQL(MySQLConnection.class);
+    MYSQL(MySQLConnection.class), MARIADB(MySQLConnection.class);
 
     private Class<? extends AccessConnection> accessConnectionClass;
     AccessConnectionType(Class<? extends AccessConnection> accessConnectionClass){
