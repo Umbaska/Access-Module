@@ -1,4 +1,4 @@
-package uk.co.umbaska.module.access.skript.mysql.expressions;
+package uk.co.umbaska.module.access.skript.mysql.expressions.connection;
 
 import uk.co.umbaska.module.access.AccessModule;
 import uk.co.umbaska.module.access.skript.mysql.types.model.AccessConnection;
