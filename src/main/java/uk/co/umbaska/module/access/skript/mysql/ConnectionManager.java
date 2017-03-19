@@ -37,4 +37,8 @@ public class ConnectionManager {
         }
     }
 
+    public AccessConnection getConnection(String key){
+        return connections.get(key);
+    }
+
 }

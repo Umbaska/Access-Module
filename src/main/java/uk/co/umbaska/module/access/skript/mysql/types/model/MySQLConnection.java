@@ -6,12 +6,15 @@ import uk.co.umbaska.module.access.AccessModule;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Andrew Tran
  */
-public class MySQLConnection extends AccessConnection implements DatabaseConnection, NormalAuthConnection, HikariConnection{
+public class MySQLConnection extends AccessConnection implements DatabaseConnection, NormalAuthConnection, HikariConnection, SQLConnection{
     private String database, username, password;
 
     private HikariConfig hikariConfig = new HikariConfig();
@@ -31,6 +34,20 @@ public class MySQLConnection extends AccessConnection implements DatabaseConnect
             return ReadyStatus.MISSING_PASSWORD;
         }
         return ReadyStatus.READY;
+    }
+
+    @Override
+    public String[] getDatabases() {
+        try(ResultSet rs = connection.getMetaData().getCatalogs();){
+            List<String> databases = new ArrayList<>();
+            while (rs.next()) {
+                databases.add(rs.getString("TABLE_CAT"));
+            }
+            return databases.stream().toArray(String[]::new);
+        } catch (SQLException e){
+          e.printStackTrace();
+        }
+        return null;
     }
 
     public enum ReadyStatus{
@@ -110,6 +127,7 @@ public class MySQLConnection extends AccessConnection implements DatabaseConnect
         return dataSource;
     }
 
+    @Override
     public Connection getConnection() {
         return connection;
     }

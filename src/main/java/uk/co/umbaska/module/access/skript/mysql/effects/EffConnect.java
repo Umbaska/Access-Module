@@ -11,12 +11,10 @@ import uk.co.umbaska.skript.UmbaskaAsyncEffect;
 public class EffConnect extends UmbaskaAsyncEffect {
     @Override
     public void execute() {
-        runAsync(() -> {
-            AccessConnection accessConnection = (AccessConnection) exp().get("connection");
-            if (accessConnection == null){
-                return;
-            }
-            accessConnection.connect();
-        });
+        AccessConnection accessConnection = (AccessConnection) exp().get("connection");
+        if (accessConnection == null){
+            return;
+        }
+        accessConnection.connect();
     }
 }
